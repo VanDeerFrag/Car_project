@@ -1,0 +1,68 @@
+@startuml
+    class Vehicle{
+        .. PROPERTIES ..
+        +string <b>name
+        +int <b>x
+        +int <b>y
+        +int <b>width
+        +int <b>height
+        +int <b>speedX
+        +int <b>speedY
+        +int <b>positionX
+        +int <b>offsetX
+        +int <b>gotoX
+        +pygame.Surface <b>image
+        .. CONSTRUCTOR ..
+        +void <b>__init__</b>(VehicleModel <b>vehicleModel</b>, int <b>speedX=1</b>, int <b>speedY=1</b>, int <b>numColumn=2</b>, int <b>numRow=-1</b>)
+        .. FUNCTIONS ..
+        +void <b>updatePosition</b>()
+    }
+
+    class Player{
+        .. PROPERTIES ..
+        +int <b>remainingLives
+        .. CONSTRUCTOR ..
+        +void <b>__init__</b>(VehicleModel <b>vehicleModel</b>, int <b>speedX=1</b>, int <b>speedY=1</b>, int <b>numColumn=2</b>, int <b>numRow=7</b>)
+        +void <b>changeDestination</b>(int <b>keyPressed</b>)
+    }
+
+    class Bot{
+        .. CONSTRUCTOR ..
+        +void <b>__init__</b>(VehicleModel <b>vehicleModel</b>, int <b>speedX=1</b>, int <b>speedY=1</b>, int <b>numColumn=2</b>, int <b>numRow=-1</b>)
+        +void <b>changeDestination</b>(int <b>numColumn</b>)
+    }
+
+    Vehicle <- Player
+    Vehicle <-- Bot
+    VehicleModel -- Vehicle
+
+    class VehicleModel{
+        +int <b>x
+        +int <b>y
+        +int <b>width
+        +int <b>height
+        +pygame.Surface <b>image
+        .. CONSTRUCTOR ..
+        +void <b>__init__</b>()
+        .. SETTER ..
+        +void <b>setLocation</b>(string <b>location</b>)
+        +void <b>setSize</b>(string <b>size</b>)
+    }
+
+        class Vehicles{
+        .. PROPERTIES ..
+        +VehicleModel[] <b>vehicleModels
+        +Vehicle[] <b>vehiclesOnTheRoad
+        .. CONSTRUCTOR ..
+        +void <b>__init__</b>()
+        .. FUNCTIONS ..
+        -void <b>_loadModels</b>()
+        -pygame.Surface <b>_getImageInModel</b>(int <b>x</b>, int <b>y</b>, int <b>width</b>, int <b>height</b>)
+        +bool <b>checkCollisions</b>()
+        +void <b>generateBot</b>() 
+        +void <b>addBot</b>()
+        +void <b>addPlayer</b>()
+        +void <b>updateThoseOnTheRoad</b>()
+    }
+
+@enduml
